@@ -1,0 +1,65 @@
+import { Globe, Linkedin, Mail } from "lucide-react";
+
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Ventures", href: "#ventures" },
+  { label: "Work With Us", href: "#work-with-us" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="py-16" style={{ borderTop: "1px solid var(--footer-border)", background: "var(--bg)" }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <span className="label-mono" style={{ color: "var(--fg-dim)" }}>
+            AARKA &copy; {new Date().getFullYear()}
+          </span>
+
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="label-mono transition-colors hover:text-white"
+                style={{ color: "var(--fg-muted)" }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-6">
+            <a
+              href="mailto:kabir@aarka.io"
+              className="transition-colors hover:text-white"
+              style={{ color: "var(--fg-muted)" }}
+              aria-label="Email"
+            >
+              <Mail size={18} />
+            </a>
+            <a
+              href="https://linkedin.com/in/kabiragarwal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+              style={{ color: "var(--fg-muted)" }}
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} />
+            </a>
+            <a
+              href="https://aarka.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+              style={{ color: "var(--fg-muted)" }}
+              aria-label="aarka.io"
+            >
+              <Globe size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

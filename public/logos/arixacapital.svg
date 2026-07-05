@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <path d="M25 8l15 32H10L25 8z" fill="none" stroke="#1B2B4B" stroke-width="2.5"/>
+  <path d="M20 20l5-10 5 10" fill="none" stroke="#1B2B4B" stroke-width="2"/>
+  <path d="M17 26l8-4 8 4" fill="none" stroke="#1B2B4B" stroke-width="1.5"/>
+  <text x="52" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#1B2B4B">ARIXA</text>
+  <text x="52" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#1B2B4B">CAPITAL</text>
+</svg>

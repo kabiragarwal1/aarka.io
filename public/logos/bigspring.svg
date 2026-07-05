@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <path d="M8 38c-4.4 0-8-3.6-8-8v-4c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v4c0 4.4-3.6 8-8 8H8z" fill="#00D4FF"/>
+  <path d="M12 28c-4.4 0-8-3.6-8-8v-4c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v4c0 4.4-3.6 8-8 8h-4z" fill="#0066FF"/>
+  <text x="32" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#2D3748">BigSpring</text>
+</svg>

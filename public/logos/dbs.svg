@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <path d="M20 25c0-8 4-12 10-12s10 4 10 12-4 12-10 12-10-4-10-12z" fill="none" stroke="#E31937" stroke-width="2"/>
+  <path d="M25 19l5 6-5 6M35 19l-5 6 5 6" fill="none" stroke="#E31937" stroke-width="1.8"/>
+  <text x="55" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="900" fill="#1a1a1a">DBS</text>
+</svg>
