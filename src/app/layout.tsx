@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import CursorProvider from "@/components/CursorProvider";
+import ScrollReset from "@/components/ScrollReset";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,6 +41,7 @@ export default function RootLayout({
         style={{ background: "var(--bg)", color: "var(--fg)" }}
       >
         <ThemeProvider>
+          <ScrollReset />
           <CursorProvider>{children}</CursorProvider>
         </ThemeProvider>
       </body>
