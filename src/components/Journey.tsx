@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Building2,
@@ -152,21 +152,25 @@ function AnimatedJourneyCard({
   item,
   index,
   scrollYProgress,
+  viewportW,
 }: {
   item: typeof timeline[0];
   index: number;
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  viewportW: number;
 }) {
-  // Cards highlight in adjacent pairs: card i is fully lit from two slots
-  // before its center moment, and the final pair holds through the end.
-  const slot = 1 / timeline.length;
-  const ramp = slot * 0.5;
-  const fullStart = (index - 2) * slot;
-  const fullEnd = index >= timeline.length - 2 ? 1 : index * slot;
+  // Cards highlight in adjacent pairs as they straddle the viewport center.
+  // centerP is the scroll progress at which this card's midpoint crosses the
+  // middle of the screen; edge cards that can never reach it clamp to the
+  // nearest end, and the final pair holds through the end of the scroll.
+  const shift = (timeline.length - 1) * cardWidth;
+  const centerP = Math.min(1, Math.max(0, (cardWidth * index + cardWidth / 2 - viewportW / 2) / shift));
+  const halfWin = cardWidth / shift;
+  const ramp = halfWin / 2;
   const highlight = (p: number) => {
-    if (p < fullStart) return Math.max(0, 1 - (fullStart - p) / ramp);
-    if (p > fullEnd) return Math.max(0, 1 - (p - fullEnd) / ramp);
-    return 1;
+    if (index >= timeline.length - 2 && p >= centerP) return 1;
+    const overshoot = Math.max(0, Math.abs(p - centerP) - halfWin);
+    return Math.max(0, 1 - overshoot / ramp);
   };
   const opacity = useTransform(scrollYProgress, (p) => 0.4 + 0.6 * highlight(p));
   const scale = useTransform(scrollYProgress, (p) => 0.95 + 0.05 * highlight(p));
@@ -181,10 +185,18 @@ function AnimatedJourneyCard({
 export default function Journey() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [viewportW, setViewportW] = useState(1440);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+
+  useEffect(() => {
+    const update = () => setViewportW(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const trackWidth = timeline.length * cardWidth;
   const x = useTransform(scrollYProgress, [0, 1], [0, -(trackWidth - cardWidth)]);
@@ -221,7 +233,7 @@ export default function Journey() {
               style={{ x, width: trackWidth }}
             >
               {timeline.map((item, i) => (
-                <AnimatedJourneyCard key={i} item={item} index={i} scrollYProgress={scrollYProgress} />
+                <AnimatedJourneyCard key={i} item={item} index={i} scrollYProgress={scrollYProgress} viewportW={viewportW} />
               ))}
             </motion.div>
           </div>
