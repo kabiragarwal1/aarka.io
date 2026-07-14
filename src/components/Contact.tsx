@@ -38,6 +38,30 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
     }
   };
 
+  if (status === "sent") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35 }}
+        className="flex flex-col items-center justify-center text-center py-20"
+      >
+        <div
+          className="w-14 h-14 flex items-center justify-center mb-5"
+          style={{ background: "rgba(99,102,241,0.12)" }}
+        >
+          <Check size={28} style={{ color: "var(--accent-indigo)" }} />
+        </div>
+        <h3 className="text-2xl font-semibold tracking-tight mb-2" style={{ color: "var(--fg-heading)" }}>
+          Message sent
+        </h3>
+        <p className="text-sm leading-relaxed max-w-sm" style={{ color: "var(--card-body)" }}>
+          Thank you for reaching out — Kabir will get back to you shortly.
+        </p>
+      </motion.div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -77,9 +101,11 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
         className="w-full flex items-center justify-center gap-2 px-6 py-3 text-white font-medium hover:opacity-90 transition-all disabled:opacity-60"
         style={{ background: "var(--accent-indigo)" }}
       >
-        {status === "sending" && <><Loader2 size={16} className="animate-spin" /> Sending...</>}
-        {status === "sent" && <><Check size={16} /> Message Sent</>}
-        {(status === "idle" || status === "error") && <><Send size={16} /> Send Message</>}
+        {status === "sending" ? (
+          <><Loader2 size={16} className="animate-spin" /> Sending...</>
+        ) : (
+          <><Send size={16} /> Send Message</>
+        )}
       </button>
       {status === "error" && (
         <p className="text-sm text-center" style={{ color: "var(--card-body)" }}>
