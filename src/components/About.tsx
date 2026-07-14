@@ -56,7 +56,7 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.15 }}
           >
             <p className="text-lg leading-[1.8] max-w-2xl mb-12" style={{ color: "var(--fg-muted)" }}>
-              Entrepreneur and systems thinker with 18+ years across digital strategy,
+              Entrepreneur and systems thinker with 19+ years across digital strategy,
               product leadership, and AI. From Razorfish and MRY in New York to co-founding
               ventures in Mumbai — I build at the intersection of strategy, technology, and execution.
             </p>

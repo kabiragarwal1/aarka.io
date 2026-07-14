@@ -216,7 +216,7 @@ export default function Journey() {
               The Journey
             </span>
             <h2 className="display-lg mb-6" style={{ color: "var(--fg-heading)" }}>
-              18+ years of <span className="gradient-text">building</span>.
+              19+ years of <span className="gradient-text">building</span>.
             </h2>
           </motion.div>
         </div>
@@ -255,7 +255,7 @@ export default function Journey() {
                     style={{ background: "rgba(255,255,255,0.92)", borderRadius: 4 }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={client.logo} alt={client.name} className="h-5 w-auto object-contain" loading="lazy" />
+                    <img src={client.logo} alt={client.name} className="h-10 w-auto object-contain" loading="lazy" />
                   </div>
                 ))}
               </div>

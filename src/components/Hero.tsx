@@ -70,7 +70,7 @@ export default function Hero() {
             className="flex flex-wrap lg:justify-end gap-8 lg:gap-12"
           >
             {[
-              { value: "18+", label: "Years Experience" },
+              { value: "19+", label: "Years Experience" },
               { value: "3", label: "AI Ventures" },
               { value: "NYC → Mumbai", label: "Global Reach" },
             ].map((stat, i) => (
