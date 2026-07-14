@@ -6,11 +6,7 @@ const TIMEOUT_MS = 10_000;
 type Submission = { name: string; email: string; type: string; message: string };
 
 /* Preferred transport — reliable, requires RESEND_API_KEY env var on Vercel. */
-async function sendViaResend(s: Submission, apiKey: string): Promise<boolean> {
-  const domain = process.env.RESEND_EMAIL_DOMAIN;
-  const from =
-    process.env.CONTACT_FROM_ADDRESS ||
-    (domain ? `AARKA Contact Form <contact@${domain}>` : "AARKA Contact Form <onboarding@resend.dev>");
+async function resendAttempt(s: Submission, apiKey: string, from: string): Promise<boolean> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -24,9 +20,21 @@ async function sendViaResend(s: Submission, apiKey: string): Promise<boolean> {
     }),
   });
   if (!res.ok) {
-    console.error("Resend failed:", res.status, await res.text().catch(() => ""));
+    console.error(`Resend failed (from ${from}):`, res.status, await res.text().catch(() => ""));
   }
   return res.ok;
+}
+
+async function sendViaResend(s: Submission, apiKey: string): Promise<boolean> {
+  const domain = process.env.RESEND_EMAIL_DOMAIN;
+  const sandboxFrom = "AARKA Contact Form <onboarding@resend.dev>";
+  const from =
+    process.env.CONTACT_FROM_ADDRESS ||
+    (domain ? `AARKA Contact Form <contact@${domain}>` : sandboxFrom);
+  if (await resendAttempt(s, apiKey, from)) return true;
+  // Custom domain may not be DNS-verified yet — fall back to the sandbox sender.
+  if (from !== sandboxFrom) return resendAttempt(s, apiKey, sandboxFrom);
+  return false;
 }
 
 /* Fallback transport — keyless relay, requires one-time activation by the recipient. */
