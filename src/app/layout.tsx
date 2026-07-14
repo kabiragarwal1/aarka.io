@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   title: "AARKA — Strategy, Product, AI & Execution | Led by Kabir Agarwal",
   description:
     "AARKA is a strategic consulting and technology firm led by Kabir Agarwal. We build intelligent businesses at the intersection of strategy, product, automation, and capital.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "AARKA — Strategy, Product, AI & Execution",
     description:
