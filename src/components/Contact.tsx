@@ -56,7 +56,7 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
           Message sent
         </h3>
         <p className="text-sm leading-relaxed max-w-sm" style={{ color: "var(--card-body)" }}>
-          Thank you for reaching out — Kabir will get back to you shortly.
+          Thank you for reaching out — we will get back to you shortly.
         </p>
       </motion.div>
     );
