@@ -157,16 +157,19 @@ function AnimatedJourneyCard({
   index: number;
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
 }) {
-  const opacity = useTransform(
-    scrollYProgress,
-    [Math.max(0, index / timeline.length - 0.1), index / timeline.length, Math.min(1, (index + 1) / timeline.length + 0.1)],
-    [0.4, 1, 0.4]
-  );
-  const scale = useTransform(
-    scrollYProgress,
-    [Math.max(0, index / timeline.length - 0.1), index / timeline.length, Math.min(1, (index + 1) / timeline.length + 0.1)],
-    [0.95, 1, 0.95]
-  );
+  // Cards highlight in adjacent pairs: card i is fully lit from two slots
+  // before its center moment, and the final pair holds through the end.
+  const slot = 1 / timeline.length;
+  const ramp = slot * 0.5;
+  const fullStart = (index - 2) * slot;
+  const fullEnd = index >= timeline.length - 2 ? 1 : index * slot;
+  const highlight = (p: number) => {
+    if (p < fullStart) return Math.max(0, 1 - (fullStart - p) / ramp);
+    if (p > fullEnd) return Math.max(0, 1 - (p - fullEnd) / ramp);
+    return 1;
+  };
+  const opacity = useTransform(scrollYProgress, (p) => 0.4 + 0.6 * highlight(p));
+  const scale = useTransform(scrollYProgress, (p) => 0.95 + 0.05 * highlight(p));
 
   return (
     <motion.div style={{ opacity, scale }}>
