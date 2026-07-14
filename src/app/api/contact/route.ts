@@ -7,12 +7,16 @@ type Submission = { name: string; email: string; type: string; message: string }
 
 /* Preferred transport — reliable, requires RESEND_API_KEY env var on Vercel. */
 async function sendViaResend(s: Submission, apiKey: string): Promise<boolean> {
+  const domain = process.env.RESEND_EMAIL_DOMAIN;
+  const from =
+    process.env.CONTACT_FROM_ADDRESS ||
+    (domain ? `AARKA Contact Form <contact@${domain}>` : "AARKA Contact Form <onboarding@resend.dev>");
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     signal: AbortSignal.timeout(TIMEOUT_MS),
     body: JSON.stringify({
-      from: process.env.CONTACT_FROM_ADDRESS || "AARKA Contact Form <onboarding@resend.dev>",
+      from,
       to: [RECIPIENT],
       reply_to: s.email,
       subject: `[AARKA] ${s.type || "Inquiry"} from ${s.name}`,
