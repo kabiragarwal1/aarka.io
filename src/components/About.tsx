@@ -32,12 +32,15 @@ export default function About() {
           >
             <div className="mb-8">
               <div
-                className="w-32 h-32 lg:w-40 lg:h-40 flex items-center justify-center border-2"
+                className="w-32 h-32 lg:w-40 lg:h-40 overflow-hidden border-2"
                 style={{ background: "var(--bg)", borderColor: "var(--accent-indigo)" }}
               >
-                <span className="text-5xl lg:text-6xl font-black tracking-tighter" style={{ color: "var(--fg-heading)" }}>
-                  KA
-                </span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/kabir.jpg"
+                  alt="Kabir Agarwal"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <h2 className="display-lg" style={{ color: "var(--fg-heading)" }}>
