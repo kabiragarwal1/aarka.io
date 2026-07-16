@@ -246,32 +246,38 @@ export default function Journey() {
   const trackWidth = timeline.length * cardWidth;
   const x = useTransform(scrollYProgress, [0, 1], [0, -(trackWidth - cardWidth)]);
 
+  const intro = (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <span className="label-mono mb-4 block" style={{ color: "var(--accent-indigo)" }}>
+        The Journey
+      </span>
+      <h2 className="display-lg mb-6" style={{ color: "var(--fg-heading)" }}>
+        19+ years of <span className="gradient-text">building</span>.
+      </h2>
+    </motion.div>
+  );
+
   return (
     <section id="journey" ref={sectionRef} className="relative bg-[var(--bg)] md:h-[300vh]">
-      {/* Intro text — in flow on mobile, overlaid on the sticky track on desktop */}
-      <div className="md:absolute md:top-0 md:left-0 md:right-0 z-10 pt-24 lg:pt-32 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="label-mono mb-4 block" style={{ color: "var(--accent-indigo)" }}>
-              The Journey
-            </span>
-            <h2 className="display-lg mb-6" style={{ color: "var(--fg-heading)" }}>
-              19+ years of <span className="gradient-text">building</span>.
-            </h2>
-          </motion.div>
-        </div>
+      {/* Intro text — mobile flow; desktop renders it inside the sticky column */}
+      <div className="md:hidden pt-24 px-6">
+        <div className="max-w-7xl mx-auto">{intro}</div>
       </div>
 
       {/* Horizontal scroll track — desktop only */}
       <div className="hidden md:block sticky top-0 h-screen overflow-hidden">
         <div className="h-full flex flex-col">
+          {/* Intro stacked above the cards so they can never overlap */}
+          <div className="shrink-0 pt-16 lg:pt-20 px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">{intro}</div>
+          </div>
           {/* Cards fill available space */}
-          <div className="flex-1 flex items-center overflow-hidden">
+          <div className="flex-1 min-h-0 flex items-center overflow-hidden">
             <motion.div
               ref={trackRef}
               className="flex"
