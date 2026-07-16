@@ -87,15 +87,18 @@ const timeline = [
 
 const clients = [
   { name: "Coca-Cola", logo: "/logos/cocacola.jpg" },
-  { name: "Razorfish", logo: "/logos/razorfish.svg" },
+  { name: "Razorfish", logo: "/logos/razorfish.jpg" },
   { name: "Johnson & Johnson", logo: "/logos/jnj.png" },
   { name: "American Express", logo: "/logos/americanexpress.png" },
+  { name: "Visa", logo: "/logos/visa.png" },
   { name: "DBS Bank", logo: "/logos/dbs.png" },
-  { name: "Uber", logo: "/logos/uber.svg" },
-  { name: "BigSpring", logo: "/logos/bigspring.svg" },
+  { name: "Uber", logo: "/logos/uber.png" },
+  { name: "P&G", logo: "/logos/pg.png" },
+  { name: "BigSpring", logo: "/logos/bigspring.jpg" },
+  { name: "Suzy", logo: "/logos/suzy.jpg" },
   { name: "Arixa Capital", logo: "/logos/arixacapital.jpg" },
-  { name: "Publicis Media", logo: "/logos/publicismedia.svg" },
-  { name: "Velocity Road", logo: "/logos/velocityroad.svg" },
+  { name: "Publicis Media", logo: "/logos/publicismedia.png" },
+  { name: "Velocity Road", logo: "/logos/velocityroad.png" },
 ];
 
 const cardWidth = 400;
