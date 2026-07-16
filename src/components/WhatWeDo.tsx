@@ -158,7 +158,18 @@ export default function WhatWeDo() {
                         )}
                       </div>
                       <h3 className="text-3xl lg:text-5xl font-black tracking-tight mb-3" style={{ color: "var(--fg-heading)" }}>
-                        {venture.name}
+                        {venture.link ? (
+                          <a
+                            href={venture.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-colors hover:text-[var(--accent-indigo)]"
+                          >
+                            {venture.name}
+                          </a>
+                        ) : (
+                          venture.name
+                        )}
                       </h3>
                       <p className="label-mono mb-4" style={{ color: "var(--accent-indigo)" }}>
                         {venture.tagline}

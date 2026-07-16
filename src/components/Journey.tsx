@@ -17,6 +17,7 @@ const timeline = [
     period: "2006 – 2008",
     role: "QA & Business Analysis",
     company: "Razorfish",
+    links: [],
     logo: "/logos/razorfish.jpg",
     location: "New York",
     icon: Globe,
@@ -28,6 +29,7 @@ const timeline = [
     period: "2008 – 2014",
     role: "User Experience",
     company: "MRY",
+    links: [],
     logo: "/logos/mry.png",
     location: "New York",
     icon: Megaphone,
@@ -39,6 +41,7 @@ const timeline = [
     period: "2015 – 2017",
     role: "Strategy, Partnerships & BD",
     company: "Health On Demand",
+    links: [],
     logo: "",
     location: "Mumbai",
     icon: Heart,
@@ -50,6 +53,7 @@ const timeline = [
     period: "2017 – 2019",
     role: "Head of User Experience",
     company: "BigSpring.ai",
+    links: [],
     logo: "/logos/bigspring.jpg",
     location: "Mumbai",
     icon: Smartphone,
@@ -61,6 +65,7 @@ const timeline = [
     period: "2019 – 2024",
     role: "Business Analysis",
     company: "Suzy",
+    links: [],
     logo: "/logos/suzy.jpg",
     location: "New York / India",
     icon: TrendingUp,
@@ -72,6 +77,7 @@ const timeline = [
     period: "2023 – Present",
     role: "Founder & CEO",
     company: "AARKA",
+    links: [],
     logo: "/favicon.svg",
     location: "Global",
     icon: Building2,
@@ -83,7 +89,11 @@ const timeline = [
     period: "2024 – Present",
     role: "Building",
     company: "Senri.ai & Narrastudio.ai",
-    logo: "",
+    links: [
+      { label: "Senri.ai", href: "https://senri.ai" },
+      { label: "Narrastudio.ai", href: "https://narrastudio.ai" },
+    ],
+    logo: "/logos/narrastudio.png",
     location: "Global",
     icon: Rocket,
     description:
@@ -124,9 +134,9 @@ function JourneyCard({ item }: { item: typeof timeline[0]; index: number }) {
       <div>
         <div className="flex items-center gap-3 mb-8">
           {item.logo ? (
-            <div className="w-10 h-10 flex items-center justify-center overflow-hidden" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid var(--card-border)", borderRadius: 4 }}>
+            <div className="h-10 min-w-10 flex items-center justify-center overflow-hidden" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid var(--card-border)", borderRadius: 4, maxWidth: 150 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={item.logo} alt={item.company} className="w-full h-full object-contain p-0.5" />
+              <img src={item.logo} alt={item.company} className="h-full w-auto max-w-full object-contain p-0.5" />
             </div>
           ) : (
             <div className="w-10 h-10 flex items-center justify-center" style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
@@ -143,7 +153,21 @@ function JourneyCard({ item }: { item: typeof timeline[0]; index: number }) {
           </div>
         </div>
         <h3 className="text-2xl font-black tracking-tight mb-2" style={{ color: "var(--fg-heading)" }}>
-          {item.company}
+          {item.links.length > 0
+            ? item.links.map((l, k) => (
+                <span key={l.href}>
+                  {k > 0 && " & "}
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-[var(--accent-indigo)] underline decoration-1 underline-offset-4"
+                  >
+                    {l.label}
+                  </a>
+                </span>
+              ))
+            : item.company}
         </h3>
         <p className="label-mono mb-4" style={{ color: "var(--accent-blue)" }}>
           {item.role}
@@ -223,9 +247,9 @@ export default function Journey() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -(trackWidth - cardWidth)]);
 
   return (
-    <section id="journey" ref={sectionRef} className="relative bg-[var(--bg)]" style={{ height: "300vh" }}>
-      {/* Intro text */}
-      <div className="absolute top-0 left-0 right-0 z-10 pt-24 lg:pt-32 px-6 lg:px-8">
+    <section id="journey" ref={sectionRef} className="relative bg-[var(--bg)] md:h-[300vh]">
+      {/* Intro text — in flow on mobile, overlaid on the sticky track on desktop */}
+      <div className="md:absolute md:top-0 md:left-0 md:right-0 z-10 pt-24 lg:pt-32 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -286,7 +310,7 @@ export default function Journey() {
       </div>
 
       {/* Stacked cards — mobile */}
-      <div className="md:hidden absolute top-0 left-0 right-0 pt-48 px-6">
+      <div className="md:hidden pt-10 px-6 pb-24">
         <div className="space-y-6">
           {timeline.map((item, i) => (
             <motion.div
