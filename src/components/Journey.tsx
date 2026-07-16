@@ -17,6 +17,7 @@ const timeline = [
     period: "2006 – 2008",
     role: "QA & Business Analysis",
     company: "Razorfish",
+    logo: "/logos/razorfish.jpg",
     location: "New York",
     icon: Globe,
     description:
@@ -27,6 +28,7 @@ const timeline = [
     period: "2008 – 2014",
     role: "User Experience",
     company: "MRY",
+    logo: "/logos/mry.png",
     location: "New York",
     icon: Megaphone,
     description:
@@ -37,6 +39,7 @@ const timeline = [
     period: "2015 – 2017",
     role: "Strategy, Partnerships & BD",
     company: "Health On Demand",
+    logo: "",
     location: "Mumbai",
     icon: Heart,
     description:
@@ -47,6 +50,7 @@ const timeline = [
     period: "2017 – 2019",
     role: "Head of User Experience",
     company: "BigSpring.ai",
+    logo: "/logos/bigspring.jpg",
     location: "Mumbai",
     icon: Smartphone,
     description:
@@ -57,6 +61,7 @@ const timeline = [
     period: "2019 – 2024",
     role: "Business Analysis",
     company: "Suzy",
+    logo: "/logos/suzy.jpg",
     location: "New York / India",
     icon: TrendingUp,
     description:
@@ -67,6 +72,7 @@ const timeline = [
     period: "2023 – Present",
     role: "Founder & CEO",
     company: "AARKA",
+    logo: "/favicon.svg",
     location: "Global",
     icon: Building2,
     description:
@@ -77,6 +83,7 @@ const timeline = [
     period: "2024 – Present",
     role: "Building",
     company: "Senri.ai & Narrastudio.ai",
+    logo: "",
     location: "Global",
     icon: Rocket,
     description:
@@ -116,9 +123,16 @@ function JourneyCard({ item }: { item: typeof timeline[0]; index: number }) {
     >
       <div>
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 flex items-center justify-center" style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
-            <Icon size={18} style={{ color: "var(--accent-indigo)" }} />
-          </div>
+          {item.logo ? (
+            <div className="w-10 h-10 flex items-center justify-center overflow-hidden" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid var(--card-border)", borderRadius: 4 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={item.logo} alt={item.company} className="w-full h-full object-contain p-0.5" />
+            </div>
+          ) : (
+            <div className="w-10 h-10 flex items-center justify-center" style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)" }}>
+              <Icon size={18} style={{ color: "var(--accent-indigo)" }} />
+            </div>
+          )}
           <div>
             <span className="label-mono block" style={{ color: "var(--accent-indigo)" }}>
               {item.period}
