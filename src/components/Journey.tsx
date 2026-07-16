@@ -42,7 +42,7 @@ const timeline = [
     role: "Strategy, Partnerships & BD",
     company: "Health On Demand",
     links: [],
-    logo: "",
+    logo: "/logos/healthondemand.png",
     location: "Mumbai",
     icon: Heart,
     description:
