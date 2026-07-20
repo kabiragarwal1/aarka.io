@@ -148,9 +148,29 @@ export default function WhatWeDo() {
                         <span className="label-mono" style={{ color: "var(--accent-indigo)" }}>
                           {venture.number}
                         </span>
-                        <span className="label-mono px-2 py-0.5" style={{ color: "var(--fg-muted)", border: "1px solid var(--card-border)" }}>
-                          {venture.status === "launching" ? "Launching Soon" : "In Development"}
-                        </span>
+                        {venture.status === "launching" ? (
+                          <a
+                            href={venture.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="label-mono px-2.5 py-1 inline-flex items-center gap-2 transition-transform hover:scale-105"
+                            style={{
+                              color: "#10b981",
+                              border: "1px solid rgba(16,185,129,0.45)",
+                              background: "rgba(16,185,129,0.08)",
+                            }}
+                          >
+                            <span className="relative flex h-2 w-2">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#10b981" }} />
+                              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#10b981" }} />
+                            </span>
+                            Beta Launch Live &rarr;
+                          </a>
+                        ) : (
+                          <span className="label-mono px-2 py-0.5" style={{ color: "var(--fg-muted)", border: "1px solid var(--card-border)" }}>
+                            In Development
+                          </span>
+                        )}
                         {venture.link && (
                           <a href={venture.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--fg-dim)" }} className="hover:text-white transition-colors">
                             <ExternalLink size={14} />
