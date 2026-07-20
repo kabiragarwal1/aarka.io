@@ -1,4 +1,4 @@
-import { Globe, Linkedin, Mail } from "lucide-react";
+import { Globe, Linkedin } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "/#about" },
@@ -40,15 +40,7 @@ export default function Footer() {
           </nav>
 
           <div className="flex items-center gap-6">
-            <a
-              href="mailto:kabir@aarka.io"
-              className="transition-colors hover:text-white"
-              style={{ color: "var(--fg-muted)" }}
-              aria-label="Email"
-            >
-              <Mail size={18} />
-            </a>
-            <a
+            <
               href="https://www.linkedin.com/company/aarka1"
               target="_blank"
               rel="noopener noreferrer"
