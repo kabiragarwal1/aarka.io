@@ -40,7 +40,7 @@ export default function Footer() {
           </nav>
 
           <div className="flex items-center gap-6">
-            <
+            <a
               href="https://www.linkedin.com/company/aarka1"
               target="_blank"
               rel="noopener noreferrer"
