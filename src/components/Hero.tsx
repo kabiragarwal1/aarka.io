@@ -91,7 +91,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.3 }}
-        className="absolute bottom-8 right-6 lg:right-8 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <span className="label-mono" style={{ color: "var(--fg-dim)" }}>
           (scroll)

@@ -1,9 +1,11 @@
 import { Globe, Linkedin, Mail } from "lucide-react";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Ventures", href: "#ventures" },
-  { label: "Work With Us", href: "#work-with-us" },
+  { label: "About", href: "/#about" },
+  { label: "What We Do", href: "/#ventures" },
+  { label: "Journey", href: "/#journey" },
+  { label: "Work With Us", href: "/#work-with-us" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 export default function Footer() {

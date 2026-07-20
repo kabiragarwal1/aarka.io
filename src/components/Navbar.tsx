@@ -85,7 +85,7 @@ export default function Navbar() {
                   >
                     {link.label}
                     <span
-                      className="absolute -bottom-0.5 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
+                      className={`absolute -bottom-0.5 left-0 h-px transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
                       style={{ background: "var(--accent-indigo)" }}
                     />
                   </a>
