@@ -18,14 +18,14 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
     const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
     const type = (form.elements.namedItem("type") as HTMLSelectElement)?.value || "";
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
-    const company = (form.elements.namedItem("company") as HTMLInputElement)?.value || "";
+    const gotcha = (form.elements.namedItem("_gotcha") as HTMLInputElement)?.value || "";
 
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, type, message, company }),
+        body: JSON.stringify({ name, email, type, message, _gotcha: gotcha }),
       });
       if (!res.ok) throw new Error("Request failed");
       form.reset();
@@ -66,14 +66,14 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm mb-1.5" style={{ color: "var(--card-body)" }}>Name</label>
-        <input type="text" id="name" name="name" required placeholder="Your name" className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none transition-all" style={inputStyle} />
+        <input type="text" id="name" name="name" required placeholder="Your name" className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-indigo)] transition-all" style={inputStyle} />
       </div>
       <div>
         <label htmlFor="email" className="block text-sm mb-1.5" style={{ color: "var(--card-body)" }}>Email</label>
-        <input type="email" id="email" name="email" required placeholder="you@company.com" className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none transition-all" style={inputStyle} />
+        <input type="email" id="email" name="email" required placeholder="you@company.com" className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-indigo)] transition-all" style={inputStyle} />
       </div>
       {/* Honeypot — hidden from humans, catches bots */}
-      <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <div>
         <label htmlFor="type" className="block text-sm mb-1.5" style={{ color: "var(--card-body)" }}>I&apos;m interested in</label>
         <select
@@ -81,7 +81,7 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
           name="type"
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
-          className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none transition-all appearance-none"
+          className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-indigo)] transition-all appearance-none"
           style={inputStyle}
         >
           <option value="">Select an option</option>
@@ -93,7 +93,7 @@ function ContactForm({ inputStyle, preselected }: { inputStyle: React.CSSPropert
       </div>
       <div>
         <label htmlFor="message" className="block text-sm mb-1.5" style={{ color: "var(--card-body)" }}>Message</label>
-        <textarea id="message" name="message" rows={3} required placeholder="Tell me about your project or challenge..." className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none transition-all resize-none" style={inputStyle} />
+        <textarea id="message" name="message" rows={3} required placeholder="Tell me about your project or challenge..." className="w-full px-4 py-2.5 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-indigo)] transition-all resize-none" style={inputStyle} />
       </div>
       <button
         type="submit"
@@ -169,7 +169,7 @@ export default function Contact() {
           </a>
           <div className="flex flex-wrap items-center gap-6 mt-6">
             <a
-              href="https://linkedin.com/in/kabiragarwal"
+              href="https://www.linkedin.com/company/aarka1"
               target="_blank"
               rel="noopener noreferrer"
               className="label-mono transition-colors hover:text-white"

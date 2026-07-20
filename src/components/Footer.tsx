@@ -5,7 +5,6 @@ const navLinks = [
   { label: "What We Do", href: "/#ventures" },
   { label: "Journey", href: "/#journey" },
   { label: "Work With Us", href: "/#work-with-us" },
-  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 export default function Footer() {
@@ -13,8 +12,18 @@ export default function Footer() {
     <footer className="py-16" style={{ borderTop: "1px solid var(--footer-border)", background: "var(--bg)" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <span className="label-mono" style={{ color: "var(--fg-dim)" }}>
+          <span className="label-mono flex items-center gap-3" style={{ color: "var(--fg-dim)" }}>
             AARKA &copy; {new Date().getFullYear()}
+            <span aria-hidden="true">·</span>
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+              style={{ color: "var(--fg-dim)" }}
+            >
+              Privacy Policy
+            </a>
           </span>
 
           <nav className="flex items-center gap-8">
@@ -40,7 +49,7 @@ export default function Footer() {
               <Mail size={18} />
             </a>
             <a
-              href="https://linkedin.com/in/kabiragarwal"
+              href="https://www.linkedin.com/company/aarka1"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-white"
