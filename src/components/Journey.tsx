@@ -134,7 +134,7 @@ function JourneyCard({ item }: { item: typeof timeline[0]; index: number }) {
       <div>
         <div className="flex items-center gap-3 mb-8">
           {item.logo ? (
-            <div className="h-10 min-w-10 flex items-center justify-center overflow-hidden" style={{ background: "rgba(255,255,255,0.92)", border: "1px solid var(--card-border)", borderRadius: 4, maxWidth: 150 }}>
+            <div className="h-10 min-w-10 flex items-center justify-center overflow-hidden" style={{ background: "#ffffff", border: "1px solid var(--card-border)", borderRadius: 4, maxWidth: 150 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.logo} alt={item.company} className="h-full w-auto max-w-full object-contain p-0.5" />
             </div>
@@ -303,7 +303,7 @@ export default function Journey() {
                   <div
                     key={i}
                     className="shrink-0 flex items-center justify-center px-5 py-2 mx-2"
-                    style={{ background: "rgba(255,255,255,0.92)", borderRadius: 4 }}
+                    style={{ background: "#ffffff", borderRadius: 4 }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={client.logo} alt={client.name} className="h-10 w-auto object-contain" loading="lazy" />
